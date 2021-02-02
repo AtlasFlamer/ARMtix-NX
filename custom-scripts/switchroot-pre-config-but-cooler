@@ -1,0 +1,7 @@
+#!/bin/bash
+if [[ -e /.preconf ]]; then
+	pacman -S --noconfirm gdk-pixbuf2
+	rc-update del switchroot-pre-config-but-cooler
+	rm /.preconf $0 /etc/init.d/switchroot-pre-config-but-cooler
+fi
+

@@ -6,6 +6,7 @@ pkgdesc='OpenRC meta-package that provides some init scripts and  a custom scrip
 arch=('aarch64')
 url=https://github.com/atlasflamer/ARMtix-NX
 source=($pkgname'::git+https://github.com/atlasflamer/ARMtix-NX.git')
+sha256sum=('SKIP')
 _bc=switchroot-pre-config-but-cooler
 pkgver(){
 	cd ${srcdir}/${pkgname} && 	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"

@@ -1,0 +1,20 @@
+ "artix": {
+    "url": "https://armtix.artixlinux.org/images/armtix-openrc-20210101.tar.xz",
+    "sig": "",
+    "type": "ext4",
+    "chroot_script": [
+                        "sed -i '0,/mirror.archlinuxarm.org/s//eu.mirror.archlinuxarm.org/' /etc/pacman.d/mirrorlist",
+                        "echo -e '[linux-4-switch]\nServer=https://repo.azka.li/arch/' >> /etc/pacman.conf",
+      "curl https://repo.azka.li/pubkey > /tmp/pubkey",
+      "pacman-key --add /tmp/pubkey",
+      "pacman-key --lsign-key D91DE9A62EE8AF1DD943ECE1F7B322ACCF81D19A",
+      "pacman -Rdd linux-aarch64 linux-aarch64-headers --noconfirm",
+      "pacman -Syu xfce4 sddm-openrc bluez-openrc --noconfirm",
+      "pacman -Syyu --noconfirm --overwrite '*' nintendo-switch-meta",
+      "mkdir -p /etc/sddm.conf.d",
+        "echo -e '[General]\nInputMethod=qtvirtualkeyboard' > /etc/sddm.conf.d/virtualkbd.conf",
+      "yes | pacman -Scc",
+      "touch /.preconf",
+      "pacman -Sw gdk-pixbuf2",
+      "usermod -aG tty,lp,input,wheel,audio,video armtix"
+    ]
